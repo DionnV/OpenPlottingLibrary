@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" dslVersion="1.0.0.0" Id="d1b9d8c6-03e9-42ae-8bc8-eb3286e645e3" name="ClassDiagram" linkedPackageId="18247f57-8653-462f-b244-d67f916e2fc5" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
+  <profileInstances>
+    <packageHasProfileInstances Id="4cbc3f2d-5b58-4c19-9c73-809566624415">
+      <profileInstance Id="661b563d-6e49-49ed-929f-cebe60adc193" name="StandardProfileL2">
+        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+      </profileInstance>
+      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="71c69a20-e1a5-4a5c-8ed2-d26404caf7f8">
+      <profileInstance Id="3a56aac0-f96c-4695-8518-693ef963fe8a" name="StandardProfileL3">
+        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+      </profileInstance>
+      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="e9530a87-6486-4a4d-94b9-3f9bfd35ca2e" name="Viewport" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="43794f61-38a7-498d-91eb-223d56110119" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="278b9e3f-4f9b-4eee-bd0e-16aeda343734" name="FunctionBuilder" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="6609bb2b-b9c9-4fa3-8416-ce60910c507f" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="bbc967d4-4554-4724-9c3c-3ea467d78cde" name="PointGenerator" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="2958b7da-1eb4-4b65-b14d-093456afd817" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="de5e020d-9566-4c6d-853f-e2b96fe39ceb" name="PlaneGenerator" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="26d5e3eb-ea1a-48cf-afd5-b054c12ad53e" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+  </packagedElements>
+  <package Id="18247f57-8653-462f-b244-d67f916e2fc5" name="OPLModelingProject">
+    <elementDefinition Id="2fbaff3a-23e2-4f7d-999f-8e27cc0636fa" />
+  </package>
+</logicalClassDesignerModel>

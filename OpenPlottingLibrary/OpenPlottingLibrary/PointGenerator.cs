@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace OpenPlottingLibrary
 {
-    public class Class1
+    class PointGenerator
     {
+
     }
 }
