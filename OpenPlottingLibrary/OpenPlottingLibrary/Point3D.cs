@@ -1,6 +1,6 @@
 ﻿namespace OpenPlottingLibrary
 {
-    struct Point3D
+    public struct Point3D
     {
         public float x { get; private set; }
         public float y { get; private set; }
