@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>7687cac1-1868-4324-8d65-30c9ac01a90a</ProjectGuid>
+    <ProjectGuid>{4F6156CE-7F48-4F0E-8735-8948F339BA18}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>OPL_GUI</RootNamespace>
