@@ -5,9 +5,7 @@ VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenPlottingLibrary", "OpenPlottingLibrary\OpenPlottingLibrary.csproj", "{402B8FE1-B54C-44AF-A784-947225284716}"
 EndProject
-Project("{F088123C-0E9E-452A-89E6-6BA2F21D5CAC}") = "OPLModelingProject", "OPLModelingProject\OPLModelingProject.modelproj", "{17598CDC-1E78-49AE-BF0C-BBB064D62CC0}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestExecutable", "TestExecutable\TestExecutable.csproj", "{44F34141-593E-433F-846B-2AA3A121E83B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OPL-GUI", "OPL-GUI\OPL-GUI.csproj", "{AC163AE9-1219-42FE-8672-C92100CEA674}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OPL-GUI", "OPL-GUI\OPL-GUI.csproj", "{4F6156CE-7F48-4F0E-8735-8948F339BA18}"
 EndProject
@@ -33,6 +31,10 @@ Global
 		{4F6156CE-7F48-4F0E-8735-8948F339BA18}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4F6156CE-7F48-4F0E-8735-8948F339BA18}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4F6156CE-7F48-4F0E-8735-8948F339BA18}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC163AE9-1219-42FE-8672-C92100CEA674}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC163AE9-1219-42FE-8672-C92100CEA674}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC163AE9-1219-42FE-8672-C92100CEA674}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC163AE9-1219-42FE-8672-C92100CEA674}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
