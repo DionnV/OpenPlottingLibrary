@@ -1,17 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using OpenPlottingLibrary;
+﻿using OpenTK.Graphics;
 
 namespace OPL_GUI
 {
-    interface IRenderable
+    public interface IRenderable
     {
-        public void draw()
-        {
-            //draw functie openGL
-        }
+        void draw();
     }
 }
