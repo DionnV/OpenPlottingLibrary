@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PlaneGenerator.cs" />
     <Compile Include="Point3D.cs" />
     <Compile Include="PointGenerator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
