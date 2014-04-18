@@ -15,7 +15,6 @@ namespace OpenPlottingLibrary
             generatedPoints = new List<Point3D>();
         }
 
-
         public static List<Point3D> Generate(int xMin, int xMax, int yMin, int yMax)
         {
             List<Point3D> generatedPoints = new List<Point3D>();
