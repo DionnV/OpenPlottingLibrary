@@ -10,6 +10,9 @@ namespace OPL_GUI
 {
     public class OPLViewControl : GLControl
     {
+        // NonSerialized needs to be here otherwise VS tries to serialize this to the Resx for gods now why and 
+        // fails to load it again making the build impossible.
+        [NonSerialized]
         private List<IRenderable> _renderlist;
         
         // Checks if the control is in designmode, when in designmode rendering is cancelled. When 

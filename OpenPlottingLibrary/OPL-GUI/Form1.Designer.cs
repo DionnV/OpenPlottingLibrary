@@ -138,7 +138,6 @@
             this.oplvIewControl1.BackColor = System.Drawing.Color.Black;
             this.oplvIewControl1.Location = new System.Drawing.Point(12, 12);
             this.oplvIewControl1.Name = "oplvIewControl1";
-            this.oplvIewControl1.Renderlist = ((System.Collections.Generic.List<OPL_GUI.IRenderable>)(resources.GetObject("oplvIewControl1.Renderlist")));
             this.oplvIewControl1.Size = new System.Drawing.Size(947, 592);
             this.oplvIewControl1.TabIndex = 0;
             this.oplvIewControl1.VSync = false;
