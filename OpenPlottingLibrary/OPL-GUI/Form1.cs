@@ -26,9 +26,17 @@ namespace OPL_GUI
                                      GL.GetInteger(GetPName.MinorVersion);
 
             this.lblAA.Text = glControl.Context.GraphicsMode.Samples.ToString();
+
+            this.lblVendor.Text = GL.GetString(StringName.Vendor);
+            this.lblRenderer.Text = GL.GetString(StringName.Renderer);            
         }
 
         private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
         {
 
         }

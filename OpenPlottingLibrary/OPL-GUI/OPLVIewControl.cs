@@ -36,7 +36,7 @@ namespace OPL_GUI
             MakeCurrent();
             if (_renderlist.Count > 0)
             {
-                _renderlist.ForEach(x => x.draw());   
+                _renderlist.ForEach(x => x.Draw());   
             }
 
             GL.Clear(ClearBufferMask.ColorBufferBit);
