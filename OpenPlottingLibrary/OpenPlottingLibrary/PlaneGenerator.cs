@@ -15,7 +15,7 @@ namespace OpenPlottingLibrary
             generatedPlane = new List<Point3D>();
         }
 
-        public static List<Point3D> Generate(List<Point3D> pointList)
+        public static List<Point3D> Generate(List<Point3D> pointList, int method)
         {
             List<Point3D> generatedPlane = new List<Point3D>();
 
@@ -32,51 +32,101 @@ namespace OpenPlottingLibrary
             bool yDown = false;
             bool start = true;
 
-
-            while(x <= pointList[pointList.Count - 1].x && y <= pointList[pointList.Count - 1].y)
+            switch (method)
             {
-                //Add first point
-                if(start)
-                {
-                    generatedPlane.Add(pointList.Find(point => point.x == x && point.y == y));
-                    start = false;
-                    yUp = true;
-                }
+                case 1:
+                    #region 1st method
 
-                if(yUp)
-                {
-                    y += density;
-                    generatedPlane.Add(pointList.Find(point => point.x == x && point.y == y));
-                    x += density;
-                    if (!(x > pointList[pointList.Count - 1].x))
+                    while (x <= pointList[pointList.Count - 1].x && y <= pointList[pointList.Count - 1].y)
                     {
-                        generatedPlane.Add(pointList.Find(point => point.x == x && point.y == y));
+                        //Add first point
+                        if (start)
+                        {
+                            generatedPlane.Add(pointList.Find(point => point.x == x && point.y == y));
+                            start = false;
+                            yUp = true;
+                        }
+
+                        if (yUp)
+                        {
+                            y += density;
+                            generatedPlane.Add(pointList.Find(point => point.x == x && point.y == y));
+                            x += density;
+                            if (!(x > pointList[pointList.Count - 1].x))
+                            {
+                                generatedPlane.Add(pointList.Find(point => point.x == x && point.y == y));
+                            }
+                            yUp = false;
+                            yDown = true;
+                        }
+
+                        if (yDown)
+                        {
+                            y -= density;
+                            generatedPlane.Add(pointList.Find(point => point.x == x && point.y == y));
+                            x += density;
+                            if (!(x > pointList[pointList.Count - 1].x))
+                            {
+                                generatedPlane.Add(pointList.Find(point => point.x == x && point.y == y));
+                            }
+                            yUp = true;
+                            yDown = false;
+                        }
+
+                        if (x >= pointList[pointList.Count - 1].x && y <= pointList[pointList.Count - 1].y)
+                        {
+                            rowCount++;
+                            x = pointList[0].x;
+                            y = pointList[0].y + rowCount * density;
+                        }
                     }
-                    yUp = false;
-                    yDown = true;                 
-                }
 
-                if(yDown)
-                {
-                    y -= density;
-                    generatedPlane.Add(pointList.Find(point => point.x == x && point.y == y));
-                    x += density;
-                    if (!(x > pointList[pointList.Count - 1].x))
-                    {                       
-                        generatedPlane.Add(pointList.Find(point => point.x == x && point.y == y));
+                    #endregion
+                    break;
+                case 2:
+                    #region 2nd method
+
+                    while (x <= pointList[pointList.Count - 1].x && y <= pointList[pointList.Count - 1].y)
+                    {
+                        //Add first point
+                        if (start)
+                        {
+                            generatedPlane.Add(pointList.Find(point => point.x == x && point.y == y));
+                            start = false;
+                            yUp = true;
+                        }
+
+                        if (yUp)
+                        {
+                            y += density;
+                            generatedPlane.Add(pointList.Find(point => point.x == x && point.y == y));
+                            yUp = false;
+                            yDown = true;
+                        }
+
+                        if (yDown)
+                        {
+                            y -= density;
+                            x += density;
+                            if (!(x > pointList[pointList.Count - 1].x))
+                            {
+                                generatedPlane.Add(pointList.Find(point => point.x == x && point.y == y));
+                            }
+                            yUp = true;
+                            yDown = false;
+                        }
+
+                        if (x >= pointList[pointList.Count - 1].x && y <= pointList[pointList.Count - 1].y)
+                        {
+                            rowCount++;
+                            x = pointList[0].x;
+                            y = pointList[0].y + rowCount * density;
+                        }
                     }
-                    yUp = true;
-                    yDown = false;  
-                }
 
-                if (x >= pointList[pointList.Count - 1].x && y <= pointList[pointList.Count - 1].y)
-                {
-                    rowCount++;
-                    x = pointList[0].x;
-                    y = pointList[0].y + rowCount * density;
-                }
-            }            
-
+                    #endregion
+                    break;
+            }
             return generatedPlane;
         }
     }
