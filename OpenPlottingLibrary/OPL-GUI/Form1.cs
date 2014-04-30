@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using OpenTK;
+using OpenTK.Graphics.OpenGL;
 
 namespace OPL_GUI
 {
@@ -15,6 +17,28 @@ namespace OPL_GUI
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void MainWindow_Load(object sender, EventArgs e)
+        {
+            GLControl glControl = this.oplvIewControl1;
+            this.lblGLVersion.Text = GL.GetInteger(GetPName.MajorVersion) + "." +
+                                     GL.GetInteger(GetPName.MinorVersion);
+
+            this.lblAA.Text = glControl.Context.GraphicsMode.Samples.ToString();
+
+            this.lblVendor.Text = GL.GetString(StringName.Vendor);
+            this.lblRenderer.Text = GL.GetString(StringName.Renderer);            
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }

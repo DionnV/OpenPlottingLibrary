@@ -10,11 +10,23 @@ namespace OPL_GUI
 {
     public class OPLViewControl : GLControl
     {
-        private List<IRenderable> _renderlist = new List<IRenderable>(); 
+        // NonSerialized needs to be here otherwise VS tries to serialize this to the Resx for gods now why and 
+        // fails to load it again making the build impossible.
+        [NonSerialized]
+        private List<IRenderable> _renderlist;
+        
+        // Checks if the control is in designmode, when in designmode rendering is cancelled. When 
+        // rendering in the designer, Visual Studio crashes.
+        private bool _indesigner = false;
 
         public OPLViewControl() : base(new GraphicsMode(32, 24, 8, 4), 3, 1, GraphicsContextFlags.ForwardCompatible )
         {
-            //this._renderlist.Add(new TimedColor());           
+
+            _renderlist = new List<IRenderable>();
+            if(LicenseManager.UsageMode == LicenseUsageMode.Designtime)
+            {
+                _indesigner = true;
+            }
         }
 
 
@@ -22,10 +34,13 @@ namespace OPL_GUI
         {
             base.OnPaint(e);
 
-            if (isInIDE()) return;
-
+            if (_indesigner) return;
+           
             MakeCurrent();
-            _renderlist.ForEach(x => x.draw());
+            if (_renderlist.Count > 0)
+            {
+                _renderlist.ForEach(x => x.Draw());   
+            }
 
             GL.Clear(ClearBufferMask.ColorBufferBit);
             SwapBuffers();
@@ -35,9 +50,7 @@ namespace OPL_GUI
         {
             base.OnLoad(e);
 
-            if (isInIDE()) return;
-
-            
+            if (_indesigner) return;
         }
 
         /// <summary>
@@ -51,21 +64,7 @@ namespace OPL_GUI
 
         public int AntiAlisingLevel
         {
-            get { return this.GraphicsMode.Samples; }
-        }
-
-        /// <summary>
-        /// Checks if the control is used in an designer.
-        /// </summary>
-        /// <returns>True if used in designer</returns>
-        private bool isInIDE()
-        {
-            if (LicenseManager.UsageMode == LicenseUsageMode.Designtime)
-            {
-                return true;
-            }
-
-            return false;
+            get { return GraphicsMode.Samples; }
         }
     }
 }
