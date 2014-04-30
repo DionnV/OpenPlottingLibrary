@@ -23,7 +23,7 @@ namespace OPL_GUI
             base.OnPaint(e);
 
             if (isInIDE()) return;
-            
+
             MakeCurrent();
             _renderlist.ForEach(x => x.draw());
 
@@ -36,6 +36,8 @@ namespace OPL_GUI
             base.OnLoad(e);
 
             if (isInIDE()) return;
+
+            
         }
 
         /// <summary>
