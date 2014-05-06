@@ -1,19 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Globalization;
 using System.Windows.Forms;
 using OpenTK;
 using OpenTK.Graphics.OpenGL;
+using OPL_GUI.Renderables;
 
 namespace OPL_GUI
 {
     public partial class MainWindow : Form
     {
+        OPLViewControl _oplvIewControl1;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -21,24 +18,31 @@ namespace OPL_GUI
 
         private void MainWindow_Load(object sender, EventArgs e)
         {
-            GLControl glControl = this.oplvIewControl1;
-            this.lblGLVersion.Text = GL.GetInteger(GetPName.MajorVersion) + "." +
-                                     GL.GetInteger(GetPName.MinorVersion);
+            // The OPLViewcontrol is loaded manually, otherwise the designer keeps crashing
+            _oplvIewControl1 = new OPLViewControl
+            {
+                BackColor = System.Drawing.Color.Black,
+                Location = new System.Drawing.Point(12, 12),
+                Name = "oplvIewControl1",
+                Size = new System.Drawing.Size(947, 592),
+                TabIndex = 0,
+                VSync = false
+            };
+            Controls.Add(_oplvIewControl1);
 
-            this.lblAA.Text = glControl.Context.GraphicsMode.Samples.ToString();
+            GLControl glControl = _oplvIewControl1;
+            lblGLVersion.Text = GL.GetInteger(GetPName.MajorVersion) + "." + GL.GetInteger(GetPName.MinorVersion);
 
-            this.lblVendor.Text = GL.GetString(StringName.Vendor);
-            this.lblRenderer.Text = GL.GetString(StringName.Renderer);            
+            lblAA.Text = glControl.Context.GraphicsMode.Samples.ToString(CultureInfo.InvariantCulture);
+
+            lblVendor.Text = GL.GetString(StringName.Vendor);
+            lblRenderer.Text = GL.GetString(StringName.Renderer); 
         }
 
-        private void label2_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
+            ((OPLViewControl)this._oplvIewControl1).Renderlist.Add(new Cube());
+            this.Refresh();
         }
     }
 }

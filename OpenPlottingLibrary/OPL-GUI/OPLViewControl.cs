@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using OpenTK;
 using OpenTK.Graphics;
 using OpenTK.Graphics.OpenGL;
+using OPL_GUI.Renderables;
 
 namespace OPL_GUI
 {
@@ -19,10 +20,14 @@ namespace OPL_GUI
         // rendering in the designer, Visual Studio crashes.
         private bool _indesigner = false;
 
+        private Camera _camera;
+
         public OPLViewControl() : base(new GraphicsMode(32, 24, 8, 4), 3, 1, GraphicsContextFlags.ForwardCompatible )
         {
 
             _renderlist = new List<IRenderable>();
+            _camera = new Camera(1.3f, this.Width / (float)this.Height, 1f, 20f);
+
             if(LicenseManager.UsageMode == LicenseUsageMode.Designtime)
             {
                 _indesigner = true;
@@ -35,17 +40,19 @@ namespace OPL_GUI
             base.OnPaint(e);
 
             if (_indesigner) return;
-           
+
+            GL.Viewport(0, 0, this.Width, this.Height);
+
             MakeCurrent();
             if (_renderlist.Count > 0)
             {
-                _renderlist.ForEach(x => x.Draw());   
+                _renderlist.ForEach(x => x.Draw(_camera));   
             }
 
-            GL.Clear(ClearBufferMask.ColorBufferBit);
             SwapBuffers();
         }
 
+        #region Overrides
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
@@ -53,6 +60,13 @@ namespace OPL_GUI
             if (_indesigner) return;
         }
 
+        protected override void OnResize(EventArgs e)
+        {
+            base.OnResize(e);
+            _camera.AspectRatio = Width/(float) Height;
+        }
+
+        #endregion
         /// <summary>
         /// List of objects that are rendered.
         /// </summary>

@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.lblRenderer = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -38,7 +37,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.lblGLVersion = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.oplvIewControl1 = new OPL_GUI.OPLViewControl();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -58,7 +57,6 @@
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Rendering Overview";
-            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // lblRenderer
             // 
@@ -113,7 +111,6 @@
             this.label2.Size = new System.Drawing.Size(56, 13);
             this.label2.TabIndex = 2;
             this.label2.Text = "AA  Level:";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // lblGLVersion
             // 
@@ -133,23 +130,28 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "OpenGL version:";
             // 
-            // oplvIewControl1
+            // button1
             // 
-            this.oplvIewControl1.BackColor = System.Drawing.Color.Black;
-            this.oplvIewControl1.Location = new System.Drawing.Point(12, 12);
-            this.oplvIewControl1.Name = "oplvIewControl1";
-            this.oplvIewControl1.Size = new System.Drawing.Size(947, 592);
-            this.oplvIewControl1.TabIndex = 0;
-            this.oplvIewControl1.VSync = false;
+            this.button1.Location = new System.Drawing.Point(1094, 12);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1293, 616);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.oplvIewControl1);
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(1309, 655);
+            this.MinimumSize = new System.Drawing.Size(1309, 655);
             this.Name = "MainWindow";
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "Open Plotting Library GUI";
             this.Load += new System.EventHandler(this.MainWindow_Load);
             this.groupBox1.ResumeLayout(false);
@@ -160,7 +162,6 @@
 
         #endregion
 
-        private OPL_GUI.OPLViewControl oplvIewControl1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label lblGLVersion;
         private System.Windows.Forms.Label label1;
@@ -170,6 +171,7 @@
         private System.Windows.Forms.Label lblVendor;
         private System.Windows.Forms.Label lblRenderer;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button button1;
     }
 }
 
