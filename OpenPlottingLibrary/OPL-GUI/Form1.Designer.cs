@@ -147,7 +147,11 @@
             this.ClientSize = new System.Drawing.Size(1293, 616);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox1);
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(1309, 655);
+            this.MinimumSize = new System.Drawing.Size(1309, 655);
             this.Name = "MainWindow";
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "Open Plotting Library GUI";
             this.Load += new System.EventHandler(this.MainWindow_Load);
             this.groupBox1.ResumeLayout(false);

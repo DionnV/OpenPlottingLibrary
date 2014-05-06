@@ -17,6 +17,7 @@ namespace OPL_GUI
 
         private void MainWindow_Load(object sender, EventArgs e)
         {
+            // The OPLViewcontrol is loaded manually, otherwise the designer keeps crashing
             this.oplvIewControl1 = new OPL_GUI.OPLViewControl();
             this.oplvIewControl1.BackColor = System.Drawing.Color.Black;
             this.oplvIewControl1.Location = new System.Drawing.Point(12, 12);

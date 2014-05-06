@@ -38,15 +38,15 @@ namespace OPL_GUI
             base.OnPaint(e);
 
             if (_indesigner) return;
-           
+
+            GL.Viewport(0, 0, this.Width, this.Height);
+
             MakeCurrent();
             if (_renderlist.Count > 0)
             {
                 _renderlist.ForEach(x => x.Draw());   
             }
 
-            GL.Clear(ClearBufferMask.ColorBufferBit);
-            GL.Flush();
             SwapBuffers();
         }
 
@@ -55,8 +55,6 @@ namespace OPL_GUI
             base.OnLoad(e);
 
             if (_indesigner) return;
-
-            GL.Viewport(0, 0, this.Width, this.Height);
         }
 
         /// <summary>
