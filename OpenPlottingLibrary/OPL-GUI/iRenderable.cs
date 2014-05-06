@@ -4,6 +4,6 @@ namespace OPL_GUI
 {
     public interface IRenderable
     {
-        void Draw();
+        void Draw(Camera camera);
     }
 }

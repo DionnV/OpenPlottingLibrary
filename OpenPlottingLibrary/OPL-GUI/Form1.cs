@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Windows.Forms;
 using OpenTK;
 using OpenTK.Graphics.OpenGL;
@@ -8,7 +9,7 @@ namespace OPL_GUI
 {
     public partial class MainWindow : Form
     {
-        OPLViewControl oplvIewControl1;
+        OPLViewControl _oplvIewControl1;
 
         public MainWindow()
         {
@@ -18,20 +19,21 @@ namespace OPL_GUI
         private void MainWindow_Load(object sender, EventArgs e)
         {
             // The OPLViewcontrol is loaded manually, otherwise the designer keeps crashing
-            this.oplvIewControl1 = new OPL_GUI.OPLViewControl();
-            this.oplvIewControl1.BackColor = System.Drawing.Color.Black;
-            this.oplvIewControl1.Location = new System.Drawing.Point(12, 12);
-            this.oplvIewControl1.Name = "oplvIewControl1";
-            this.oplvIewControl1.Size = new System.Drawing.Size(947, 592);
-            this.oplvIewControl1.TabIndex = 0;
-            this.oplvIewControl1.VSync = false;
-            this.Controls.Add(this.oplvIewControl1);
+            _oplvIewControl1 = new OPLViewControl
+            {
+                BackColor = System.Drawing.Color.Black,
+                Location = new System.Drawing.Point(12, 12),
+                Name = "oplvIewControl1",
+                Size = new System.Drawing.Size(947, 592),
+                TabIndex = 0,
+                VSync = false
+            };
+            Controls.Add(_oplvIewControl1);
 
-            GLControl glControl = oplvIewControl1;
-            lblGLVersion.Text = GL.GetInteger(GetPName.MajorVersion) + "." +
-                                     GL.GetInteger(GetPName.MinorVersion);
+            GLControl glControl = _oplvIewControl1;
+            lblGLVersion.Text = GL.GetInteger(GetPName.MajorVersion) + "." + GL.GetInteger(GetPName.MinorVersion);
 
-            lblAA.Text = glControl.Context.GraphicsMode.Samples.ToString();
+            lblAA.Text = glControl.Context.GraphicsMode.Samples.ToString(CultureInfo.InvariantCulture);
 
             lblVendor.Text = GL.GetString(StringName.Vendor);
             lblRenderer.Text = GL.GetString(StringName.Renderer); 
@@ -39,7 +41,7 @@ namespace OPL_GUI
 
         private void button1_Click(object sender, EventArgs e)
         {
-            ((OPLViewControl)this.oplvIewControl1).Renderlist.Add(new Cube());
+            ((OPLViewControl)this._oplvIewControl1).Renderlist.Add(new Cube());
             this.Refresh();
         }
     }
