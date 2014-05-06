@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using OpenTK;
 using OpenTK.Graphics;
 using OpenTK.Graphics.OpenGL;
+using OPL_GUI.Renderables;
 
 namespace OPL_GUI
 {
@@ -23,6 +24,8 @@ namespace OPL_GUI
         {
 
             _renderlist = new List<IRenderable>();
+         
+
             if(LicenseManager.UsageMode == LicenseUsageMode.Designtime)
             {
                 _indesigner = true;
@@ -43,6 +46,7 @@ namespace OPL_GUI
             }
 
             GL.Clear(ClearBufferMask.ColorBufferBit);
+            GL.Flush();
             SwapBuffers();
         }
 
@@ -51,6 +55,8 @@ namespace OPL_GUI
             base.OnLoad(e);
 
             if (_indesigner) return;
+
+            GL.Viewport(0, 0, this.Width, this.Height);
         }
 
         /// <summary>
