@@ -38,7 +38,7 @@ namespace OPL_GUI
             base.OnPaint(e);
 
             if (_indesigner) return;
-            
+           
             MakeCurrent();
             if (_renderlist.Count > 0)
             {
