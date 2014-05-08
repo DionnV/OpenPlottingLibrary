@@ -1,4 +1,3 @@
-C:\Users\Dion\Documents\GitHub\OpenPlottingLibrary\OpenPlottingLibrary\OpenPlottingLibrary\obj\Debug\OpenPlottingLibrary.csprojResolveAssemblyReference.cache
 C:\Users\Dion\Documents\GitHub\OpenPlottingLibrary\OpenPlottingLibrary\OpenPlottingLibrary\bin\Debug\OpenPlottingLibrary.dll
 C:\Users\Dion\Documents\GitHub\OpenPlottingLibrary\OpenPlottingLibrary\OpenPlottingLibrary\bin\Debug\OpenPlottingLibrary.pdb
 C:\Users\Dion\Documents\GitHub\OpenPlottingLibrary\OpenPlottingLibrary\OpenPlottingLibrary\obj\Debug\OpenPlottingLibrary.dll

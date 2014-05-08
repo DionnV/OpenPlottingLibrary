@@ -15,15 +15,16 @@ namespace OpenPlottingLibrary
             generatedPlane = new List<Point3D>();
         }
 
-        public static List<Point3D> Generate(int xMin, int xMax, int yMin, int yMax, float density)
+        public static List<Point3D> Generate(String expr, int xMin, int xMax, int yMin, int yMax, float density)
         {
+
             List<Point3D> generatedPlane = new List<Point3D>();
-
-
-            //The starting values can be found by taking the first elements of the list
+          
             float x = xMin;
             float y = yMin;
             float dir = 1;
+
+            var f = Function.ToFunc<float, float, float>(expr, "x", "y");
 
             float rowCount = 0;
 
@@ -36,7 +37,7 @@ namespace OpenPlottingLibrary
                 //Add first point
                 if (start)
                 {
-                    generatedPlane.Add(new Point3D(x, y, x+y));
+                    generatedPlane.Add(new Point3D(x, y, f(x,y)));
                     start = false;
                     yUp = true;
                 }
@@ -44,7 +45,7 @@ namespace OpenPlottingLibrary
                 if (yUp)
                 {
                     y += density;
-                    generatedPlane.Add(new Point3D(x, y, x + y));
+                    generatedPlane.Add(new Point3D(x, y, f(x, y)));
                     yUp = false;
                     yDown = true;
                 }
@@ -55,7 +56,7 @@ namespace OpenPlottingLibrary
                     x += dir * density;
                     if (!(x > xMax))
                     {
-                        generatedPlane.Add(new Point3D(x, y, x + y));
+                        generatedPlane.Add(new Point3D(x, y, f(x, y)));
                     }
                     yUp = true;
                     yDown = false;
@@ -65,7 +66,7 @@ namespace OpenPlottingLibrary
                 {
                     rowCount++;
                     y += density;
-                    generatedPlane.Add(new Point3D(x, y, x + y));
+                    generatedPlane.Add(new Point3D(x, y, f(x, y)));
                     dir = -dir;
                 }
             }
