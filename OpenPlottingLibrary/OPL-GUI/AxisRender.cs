@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using OpenPlottingLibrary;
+using OpenTK.Graphics.OpenGL;
 
 namespace OPL_GUI
 {
-    class Axis : IRenderable
+    class AxisRender : IRenderable
     {
         public enum axisType { x, y, z };
         axisType type;
@@ -15,9 +16,10 @@ namespace OPL_GUI
         private Point3D endPoint;
         public void draw()
         {
+            
             //draw the points of the axis with OpenGL
         }
-        public Axis(axisType type)
+        public AxisRender(axisType type)
         {
 
             switch (type)
