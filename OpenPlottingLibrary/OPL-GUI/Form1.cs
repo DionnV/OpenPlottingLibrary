@@ -52,5 +52,41 @@ namespace OPL_GUI
             ((OPLViewControl)this._oplvIewControl1).Renderlist.Add(renderer);
             this.Refresh();
         }
+
+        private void XBar_Scroll(object sender, EventArgs e)
+        {
+            List<Point3D> points = PlaneGenerator.Generate(expressionBox.Text, -5, 5, -5, 5, densityBar.Value);
+
+            PointRenderer renderer = new PointRenderer(points);
+            renderer.SetModelviewMatrix(Matrix4.CreateTranslation(XBar.Value, YBar.Value, ZBar.Value));
+
+            ((OPLViewControl)this._oplvIewControl1).Renderlist.Clear();
+            ((OPLViewControl)this._oplvIewControl1).Renderlist.Add(renderer);
+            this.Refresh();
+        }
+
+        private void YBar_Scroll(object sender, EventArgs e)
+        {
+            List<Point3D> points = PlaneGenerator.Generate(expressionBox.Text, -5, 5, -5, 5, densityBar.Value);
+
+            PointRenderer renderer = new PointRenderer(points);
+            renderer.SetModelviewMatrix(Matrix4.CreateTranslation(XBar.Value, YBar.Value, ZBar.Value));
+
+            ((OPLViewControl)this._oplvIewControl1).Renderlist.Clear();
+            ((OPLViewControl)this._oplvIewControl1).Renderlist.Add(renderer);
+            this.Refresh();
+        }
+
+        private void ZBar_Scroll(object sender, EventArgs e)
+        {
+            List<Point3D> points = PlaneGenerator.Generate(expressionBox.Text, -5, 5, -5, 5, densityBar.Value);
+
+            PointRenderer renderer = new PointRenderer(points);
+            renderer.SetModelviewMatrix(Matrix4.CreateTranslation(XBar.Value, YBar.Value, ZBar.Value));
+
+            ((OPLViewControl)this._oplvIewControl1).Renderlist.Clear();
+            ((OPLViewControl)this._oplvIewControl1).Renderlist.Add(renderer);
+            this.Refresh();
+        }
     }
 }

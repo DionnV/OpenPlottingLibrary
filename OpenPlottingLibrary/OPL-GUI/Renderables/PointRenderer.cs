@@ -20,8 +20,7 @@ namespace OPL_GUI.Renderables
  
             // camera space to clip coordinates
             uniform mat4 projection_matrix;
- 
- 
+
             // incoming vertex position
             in vec3 vertex_position;
  
@@ -141,7 +140,7 @@ namespace OPL_GUI.Renderables
             modelviewMatrixLocation = GL.GetUniformLocation(shaderProgramHandle, "modelview_matrix");
         }
 
-        private void SetModelviewMatrix(Matrix4 matrix)
+        public void SetModelviewMatrix(Matrix4 matrix)
         {
             modelviewMatrix = matrix;
             GL.UniformMatrix4(modelviewMatrixLocation, false, ref modelviewMatrix);
