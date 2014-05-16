@@ -44,10 +44,11 @@ namespace OPL_GUI
 
         private void button1_Click(object sender, EventArgs e)
         {
-            List<Point3D> points = PlaneGenerator.Generate(expressionBox.Text,-5,5, -5, 5, 10);
+            List<Point3D> points = PlaneGenerator.Generate(expressionBox.Text,-5,5, -5, 5, densityBar.Value);
             
             PointRenderer renderer = new PointRenderer(points);
 
+            ((OPLViewControl)this._oplvIewControl1).Renderlist.Clear();
             ((OPLViewControl)this._oplvIewControl1).Renderlist.Add(renderer);
             this.Refresh();
         }

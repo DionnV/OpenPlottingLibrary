@@ -165,12 +165,10 @@
             // densityBar
             // 
             this.densityBar.Location = new System.Drawing.Point(1094, 68);
-            this.densityBar.Maximum = 100;
             this.densityBar.Minimum = 1;
             this.densityBar.Name = "densityBar";
             this.densityBar.Size = new System.Drawing.Size(104, 45);
             this.densityBar.TabIndex = 5;
-            this.densityBar.TickFrequency = 10;
             this.densityBar.Value = 1;
             // 
             // label6
