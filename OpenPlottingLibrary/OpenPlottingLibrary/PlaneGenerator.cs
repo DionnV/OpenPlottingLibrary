@@ -17,7 +17,6 @@ namespace OpenPlottingLibrary
 
         public static List<Point3D> Generate(String expr, int xMin, int xMax, int yMin, int yMax, float density)
         {
-
             List<Point3D> generatedPlane = new List<Point3D>();
           
             float x = xMin;

@@ -7,3 +7,4 @@ C:\Users\Maikel\Documents\Projects\OpenPlottingLibrary\OpenPlottingLibrary\OpenP
 C:\Users\Maikel\Documents\Projects\OpenPlottingLibrary\OpenPlottingLibrary\OpenPlottingLibrary\obj\Debug\OpenPlottingLibrary.csprojResolveAssemblyReference.cache
 C:\Users\Maikel\Documents\Projects\OpenPlottingLibrary\OpenPlottingLibrary\OpenPlottingLibrary\obj\Debug\OpenPlottingLibrary.dll
 C:\Users\Maikel\Documents\Projects\OpenPlottingLibrary\OpenPlottingLibrary\OpenPlottingLibrary\obj\Debug\OpenPlottingLibrary.pdb
+C:\Users\Dion\Documents\GitHub\OpenPlottingLibrary\OpenPlottingLibrary\OpenPlottingLibrary\obj\Debug\OpenPlottingLibrary.csprojResolveAssemblyReference.cache
