@@ -45,18 +45,19 @@ namespace OPL_GUI.Renderables
  
             precision highp float;
  
-            const vec3 ambient = vec3( 0.0, 0.0, 0.0 );
+            const vec3 ambient = vec3( 0.0, 0.5, 1.0 );
             const vec3 lightVecNormalized = normalize( vec3( 0.5, 0.5, 2 ) );
-            const vec3 lightColor = vec3( 0.0, 0.0, 0.0 );
+            const vec3 lightColor = vec3( 0.4, 0.5, 0.0 );
  
             in vec3 normal;
+            in vec4 gl_FragCoord;
  
             out vec4 out_frag_color;
  
             void main(void)
             {
               float diffuse = clamp( dot( lightVecNormalized, normalize( normal ) ), 0.0, 1.0 );
-              out_frag_color = vec4( ambient + diffuse * lightColor, 1.0 );
+              out_frag_color = vec4( 1.0, gl_FragCoord.z, 0.0, 1.0 );
             }";
 
         int vertexShaderHandle,
@@ -84,7 +85,7 @@ namespace OPL_GUI.Renderables
 
             QueryMatrixLocations();
 
-            SetModelviewMatrix(Matrix4.CreateTranslation(0, 0, -4));
+            SetModelviewMatrix(Matrix4.CreateTranslation(0, 0, -5));
 
             LoadVertexPositions();
             LoadVertexNormals();
@@ -183,6 +184,7 @@ namespace OPL_GUI.Renderables
             // Generate indexes for use on triangestrip
 
             indicesVboData = new uint[positionVboData.Length];
+            
             for (int i = 0; i < positionVboData.Length; i++)
             {
                 indicesVboData[i] = (uint)i;
