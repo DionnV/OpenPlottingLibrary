@@ -15,16 +15,15 @@ namespace OpenPlottingLibrary
             generatedPlane = new List<Point3D>();
         }
 
-        public static List<Point3D> Generate(List<Point3D> pointList, int method)
+        public static List<Point3D> Generate(String expr, int xMin, int xMax, int yMin, int yMax, float density)
         {
             List<Point3D> generatedPlane = new List<Point3D>();
+          
+            float x = xMin;
+            float y = yMin;
+            float dir = 1;
 
-            //The density can be found by taking the difference between the first two elements of the list.
-            float density = Math.Abs(pointList[0].y - pointList[1].y);
-
-            //The starting values can be found by taking the first elements of the list
-            float x = pointList[0].x;
-            float y = pointList[0].y;
+            var f = Function.ToFunc<float, float, float>(expr, "x", "y");
 
             float rowCount = 0;
 
@@ -32,100 +31,43 @@ namespace OpenPlottingLibrary
             bool yDown = false;
             bool start = true;
 
-            switch (method)
+            while (x <= xMax && y <= yMax)
             {
-                case 1:
-                    #region 1st method
+                //Add first point
+                if (start)
+                {
+                    generatedPlane.Add(new Point3D(x, y, f(x,y)));
+                    start = false;
+                    yUp = true;
+                }
 
-                    while (x <= pointList[pointList.Count - 1].x && y <= pointList[pointList.Count - 1].y)
+                if (yUp)
+                {
+                    y += density;
+                    generatedPlane.Add(new Point3D(x, y, f(x, y)));
+                    yUp = false;
+                    yDown = true;
+                }
+
+                if (yDown)
+                {
+                    y -= density;
+                    x += dir * density;
+                    if (!(x > xMax))
                     {
-                        //Add first point
-                        if (start)
-                        {
-                            generatedPlane.Add(pointList.Find(point => point.x == x && point.y == y));
-                            start = false;
-                            yUp = true;
-                        }
-
-                        if (yUp)
-                        {
-                            y += density;
-                            generatedPlane.Add(pointList.Find(point => point.x == x && point.y == y));
-                            x += density;
-                            if (!(x > pointList[pointList.Count - 1].x))
-                            {
-                                generatedPlane.Add(pointList.Find(point => point.x == x && point.y == y));
-                            }
-                            yUp = false;
-                            yDown = true;
-                        }
-
-                        if (yDown)
-                        {
-                            y -= density;
-                            generatedPlane.Add(pointList.Find(point => point.x == x && point.y == y));
-                            x += density;
-                            if (!(x > pointList[pointList.Count - 1].x))
-                            {
-                                generatedPlane.Add(pointList.Find(point => point.x == x && point.y == y));
-                            }
-                            yUp = true;
-                            yDown = false;
-                        }
-
-                        if (x >= pointList[pointList.Count - 1].x && y <= pointList[pointList.Count - 1].y)
-                        {
-                            rowCount++;
-                            x = pointList[0].x;
-                            y = pointList[0].y + rowCount * density;
-                        }
+                        generatedPlane.Add(new Point3D(x, y, f(x, y)));
                     }
+                    yUp = true;
+                    yDown = false;
+                }
 
-                    #endregion
-                    break;
-                case 2:
-                    #region 2nd method
-
-                    while (x <= pointList[pointList.Count - 1].x && y <= pointList[pointList.Count - 1].y)
-                    {
-                        //Add first point
-                        if (start)
-                        {
-                            generatedPlane.Add(pointList.Find(point => point.x == x && point.y == y));
-                            start = false;
-                            yUp = true;
-                        }
-
-                        if (yUp)
-                        {
-                            y += density;
-                            generatedPlane.Add(pointList.Find(point => point.x == x && point.y == y));
-                            yUp = false;
-                            yDown = true;
-                        }
-
-                        if (yDown)
-                        {
-                            y -= density;
-                            x += density;
-                            if (!(x > pointList[pointList.Count - 1].x))
-                            {
-                                generatedPlane.Add(pointList.Find(point => point.x == x && point.y == y));
-                            }
-                            yUp = true;
-                            yDown = false;
-                        }
-
-                        if (x >= pointList[pointList.Count - 1].x && y <= pointList[pointList.Count - 1].y)
-                        {
-                            rowCount++;
-                            x = pointList[0].x;
-                            y = pointList[0].y + rowCount * density;
-                        }
-                    }
-
-                    #endregion
-                    break;
+                if ((x >= xMax|| x <= xMin) && y <= yMax)
+                {
+                    rowCount++;
+                    y += density;
+                    generatedPlane.Add(new Point3D(x, y, f(x, y)));
+                    dir = -dir;
+                }
             }
             return generatedPlane;
         }
