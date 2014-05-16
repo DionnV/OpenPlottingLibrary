@@ -31,7 +31,7 @@ namespace OpenPlottingLibrary
             bool yDown = false;
             bool start = true;
 
-            while (x <= xMax && y <= yMax)
+            while (x <= xMax || y <= yMax)
             {
                 //Add first point
                 if (start)
@@ -44,7 +44,15 @@ namespace OpenPlottingLibrary
                 if (yUp)
                 {
                     y += density;
-                    generatedPlane.Add(new Point3D(x, y, f(x, y)));
+                    if (!(x > xMax || y > yMax))
+                    {
+                        generatedPlane.Add(new Point3D(x, y, f(x, y)));
+                    }
+                    x += dir * density;
+                    if (!(x > xMax || y > yMax))
+                    {
+                        generatedPlane.Add(new Point3D(x, y, f(x, y)));
+                    }
                     yUp = false;
                     yDown = true;
                 }
@@ -52,8 +60,12 @@ namespace OpenPlottingLibrary
                 if (yDown)
                 {
                     y -= density;
+                    if (!(x > xMax || y > yMax))
+                    {
+                        generatedPlane.Add(new Point3D(x, y, f(x, y)));
+                    }
                     x += dir * density;
-                    if (!(x > xMax))
+                    if (!(x > xMax || y > yMax))
                     {
                         generatedPlane.Add(new Point3D(x, y, f(x, y)));
                     }
@@ -61,11 +73,11 @@ namespace OpenPlottingLibrary
                     yDown = false;
                 }
 
-                if ((x >= xMax|| x <= xMin) && y <= yMax)
+                if ((x >= xMax || x <= xMin) && y <= yMax)
                 {
                     rowCount++;
                     y += density;
-                    generatedPlane.Add(new Point3D(x, y, f(x, y)));
+                    //generatedPlane.Add(new Point3D(x, y, f(x, y)));
                     dir = -dir;
                 }
             }
