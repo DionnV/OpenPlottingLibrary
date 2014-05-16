@@ -1,13 +1,17 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
+using System.Linq;
+using OpenPlottingLibrary;
 using OpenTK;
-using OpenTK.Graphics;
 using OpenTK.Graphics.OpenGL;
 
 namespace OPL_GUI.Renderables
 {
-    public class Cube : IRenderable
+    public class PointRenderer : IRenderable
     {
+        private readonly List<Point3D> _points;
         string vertexShaderSource = @"
             #version 140
  
@@ -41,9 +45,9 @@ namespace OPL_GUI.Renderables
  
             precision highp float;
  
-            const vec3 ambient = vec3( 0.1, 0.1, 0.1 );
+            const vec3 ambient = vec3( 0.0, 0.0, 0.0 );
             const vec3 lightVecNormalized = normalize( vec3( 0.5, 0.5, 2 ) );
-            const vec3 lightColor = vec3( 1.0, 0.8, 0.2 );
+            const vec3 lightColor = vec3( 0.0, 0.0, 0.0 );
  
             in vec3 normal;
  
@@ -66,40 +70,21 @@ namespace OPL_GUI.Renderables
 
         Matrix4 projectionMatrix, modelviewMatrix;
 
-        Vector3[] positionVboData = new Vector3[]{
-            new Vector3(-1.0f, -1.0f,  1.0f),
-            new Vector3( 1.0f, -1.0f,  1.0f),
-            new Vector3( 1.0f,  1.0f,  1.0f),
-            new Vector3(-1.0f,  1.0f,  1.0f),
-            new Vector3(-1.0f, -1.0f, -1.0f),
-            new Vector3( 1.0f, -1.0f, -1.0f), 
-            new Vector3( 1.0f,  1.0f, -1.0f),
-            new Vector3(-1.0f,  1.0f, -1.0f) };
+        private Vector3[] positionVboData;
 
-        uint[] indicesVboData =
+        private uint[] indicesVboData;
+
+        public PointRenderer(List<Point3D> points)
         {
-            // front face
-            0, 1, 2, 2, 3, 0,
-            // top face
-            3, 2, 6, 6, 7, 3,
-            // back face
-            7, 6, 5, 5, 4, 7,
-            // left face
-            4, 0, 3, 3, 7, 4,
-            // bottom face
-            0, 1, 5, 5, 4, 0,
-            // right face
-            1, 5, 6, 6, 2, 1, 
-        };
-        public Cube()
-        {
+            positionVboData = points.Select(x => new Vector3(x.x, x.y, x.z)).ToArray();
+
             CreateShaders();
             CreateProgram();
             GL.UseProgram(shaderProgramHandle);
 
             QueryMatrixLocations();
 
-            SetModelviewMatrix(Matrix4.RotateX(0.5f) * Matrix4.CreateTranslation(0, 0, -4));
+            SetModelviewMatrix(Matrix4.CreateTranslation(0, 0, -4));
 
             LoadVertexPositions();
             LoadVertexNormals();
@@ -107,7 +92,7 @@ namespace OPL_GUI.Renderables
 
             // Other state
             GL.Enable(EnableCap.DepthTest);
-            GL.ClearColor(0, 0.1f, 0.4f, 1);
+            GL.ClearColor(1, 1f, 1f, 1);
         }
 
         public void Draw(Camera camera)
@@ -195,11 +180,19 @@ namespace OPL_GUI.Renderables
 
         private void LoadIndexer()
         {
+            // Generate indexes for use on triangestrip
+
+            indicesVboData = new uint[positionVboData.Length];
+            for (int i = 0; i < positionVboData.Length; i++)
+            {
+                indicesVboData[i] = (uint)i;
+            }
+
             GL.GenBuffers(1, out indicesVboHandle);
             GL.BindBuffer(BufferTarget.ElementArrayBuffer, indicesVboHandle);
             GL.BufferData<uint>(BufferTarget.ElementArrayBuffer,
-                new IntPtr(indicesVboData.Length * Vector3.SizeInBytes),
+                new IntPtr(indicesVboData.Length * sizeof(uint)),
                 indicesVboData, BufferUsageHint.StaticDraw);
-        }
+        } 
     }
 }

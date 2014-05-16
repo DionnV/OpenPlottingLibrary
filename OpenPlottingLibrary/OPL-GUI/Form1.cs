@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
 using System.Globalization;
 using System.Windows.Forms;
+using OpenPlottingLibrary;
 using OpenTK;
 using OpenTK.Graphics.OpenGL;
 using OPL_GUI.Renderables;
@@ -41,7 +44,11 @@ namespace OPL_GUI
 
         private void button1_Click(object sender, EventArgs e)
         {
-            ((OPLViewControl)this._oplvIewControl1).Renderlist.Add(new Cube());
+            List<Point3D> points = PointGenerator.Generate(-5,5, -5, 5, 10);
+            
+            PointRenderer renderer = new PointRenderer(points);
+
+            ((OPLViewControl)this._oplvIewControl1).Renderlist.Add(renderer);
             this.Refresh();
         }
     }
