@@ -112,7 +112,9 @@ namespace OPL_GUI.Renderables
 
         public void Draw(Camera camera)
         {
-            SetProjectionMatrix(camera.ProjectionMatrix);
+            Matrix4 mat4 = new Matrix4();
+            camera.GetProjectionMatrix(out mat4);
+            SetProjectionMatrix(mat4);
             
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
 

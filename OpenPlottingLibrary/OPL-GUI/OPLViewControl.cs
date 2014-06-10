@@ -20,13 +20,13 @@ namespace OPL_GUI
         // rendering in the designer, Visual Studio crashes.
         private bool _indesigner = false;
 
-        private Camera _camera;
+        public Camera _camera;
 
         public OPLViewControl() : base(new GraphicsMode(32, 24, 8, 4), 3, 1, GraphicsContextFlags.ForwardCompatible )
         {
 
             _renderlist = new List<IRenderable>();
-            _camera = new Camera(1.3f, this.Width / (float)this.Height, 1f, 20f);
+            _camera = new Camera(new Vector3(1,1,-10), new Quaternion(1,1,1,0));
 
             if(LicenseManager.UsageMode == LicenseUsageMode.Designtime)
             {
