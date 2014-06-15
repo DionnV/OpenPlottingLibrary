@@ -50,11 +50,21 @@ namespace OPL_GUI
         private void button1_Click(object sender, EventArgs e)
         {
             List<Point3D> points = PlaneGenerator.Generate(expressionBox.Text,-5,5, -5, 5, densityBar.Value);
+            List<Point3D> xAxis = AxisGenerator.Generate(AxisGenerator.axis.x, -5, 5);
+            List<Point3D> yAxis = AxisGenerator.Generate(AxisGenerator.axis.y, -5, 5);
+            List<Point3D> zAxis = AxisGenerator.Generate(AxisGenerator.axis.z, -5, 5);
             
             PointRenderer renderer = new PointRenderer(points);
+            PointRenderer xRenderer = new PointRenderer(xAxis);
+            PointRenderer yRenderer = new PointRenderer(yAxis);
+            PointRenderer zRenderer = new PointRenderer(zAxis);
+
 
             ((OPLViewControl)this._oplvIewControl1).Renderlist.Clear();
             ((OPLViewControl)this._oplvIewControl1).Renderlist.Add(renderer);
+            ((OPLViewControl)this._oplvIewControl1).Renderlist.Add(xRenderer);
+            ((OPLViewControl)this._oplvIewControl1).Renderlist.Add(yRenderer);
+            ((OPLViewControl)this._oplvIewControl1).Renderlist.Add(zRenderer);
             this.Refresh();
         }
 
