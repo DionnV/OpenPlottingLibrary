@@ -62,7 +62,8 @@ namespace OPL_GUI.Renderables
             projectionMatrixLocation,
             positionVboHandle,
             normalVboHandle,
-            indicesVboHandle;
+            indicesVboHandle,
+            vaoHandle;
 
         Matrix4 projectionMatrix, modelviewMatrix;
 
@@ -101,9 +102,13 @@ namespace OPL_GUI.Renderables
 
             SetModelviewMatrix(Matrix4.RotateX(0.5f) * Matrix4.CreateTranslation(0, 0, -4));
 
-            //LoadVertexPositions();
-            //LoadVertexNormals();
-            //LoadIndexer();
+            // Generate and bind VAO
+            GL.GenVertexArrays(1, out vaoHandle);
+            GL.BindVertexArray(vaoHandle);
+
+            LoadVertexPositions();
+            LoadVertexNormals();
+            LoadIndexer();
 
             // Other state
             GL.Enable(EnableCap.DepthTest);
@@ -114,17 +119,22 @@ namespace OPL_GUI.Renderables
             Matrix4 mat4 = new Matrix4();
             camera.GetProjectionMatrix(out mat4);
             SetProjectionMatrix(mat4);
-           
+
+            camera.GetModelviewMatrix(out mat4);
+            SetModelviewMatrix(mat4);
 
             GL.DrawElements(BeginMode.TriangleStrip, indicesVboData.Length,
                 DrawElementsType.UnsignedInt, IntPtr.Zero);
-
-            GL.Flush();
         }
 
         public int GetShaderProgramHandle()
         {
             return this.shaderProgramHandle;
+        }
+
+        public int GetBufferHandle()
+        {
+            return vaoHandle;
         }
 
         private void CreateShaders()

@@ -11,5 +11,11 @@ namespace OPL_GUI
         /// </summary>
         /// <returns></returns>
         int GetShaderProgramHandle();
+
+        /// <summary>
+        /// Returns the buffer object (VAO) where all the data resides that should rendered.
+        /// </summary>
+        /// <returns></returns>
+        int GetBufferHandle();
     }
 }

@@ -66,7 +66,8 @@ namespace OPL_GUI.Renderables
             projectionMatrixLocation,
             positionVboHandle,
             normalVboHandle,
-            indicesVboHandle;
+            indicesVboHandle,
+            vaoHandle;
 
         Matrix4 projectionMatrix, modelviewMatrix;
 
@@ -86,6 +87,10 @@ namespace OPL_GUI.Renderables
 
             SetModelviewMatrix(Matrix4.CreateTranslation(0, 0, -5));
 
+            // Generate and bind VAO
+            GL.GenVertexArrays(1, out vaoHandle);
+            GL.BindVertexArray(vaoHandle);
+
             LoadVertexPositions();
             LoadVertexNormals();
             LoadIndexer();
@@ -103,21 +108,18 @@ namespace OPL_GUI.Renderables
             camera.GetModelviewMatrix(out mat4);
             SetModelviewMatrix(mat4);
             
-            GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
-
-            GL.BindVertexArray(positionVboHandle);
-
             GL.DrawElements(BeginMode.TriangleStrip, indicesVboData.Length,
                 DrawElementsType.UnsignedInt, IntPtr.Zero);
-
-            GL.BindVertexArray(0);
-
-            GL.Flush();
         }
 
         public int GetShaderProgramHandle()
         {
             return this.shaderProgramHandle;
+        }
+
+        public int GetBufferHandle()
+        {
+            return vaoHandle;
         }
 
         private void CreateShaders()
@@ -176,9 +178,6 @@ namespace OPL_GUI.Renderables
             GL.EnableVertexAttribArray(0);
             GL.BindAttribLocation(shaderProgramHandle, 0, "vertex_position");
             GL.VertexAttribPointer(0, 3, VertexAttribPointerType.Float, false, Vector3.SizeInBytes, 0);
-
-            GL.EnableVertexAttribArray(0);
-            GL.BindVertexArray(0);
         }
 
         private void LoadVertexNormals()
@@ -192,10 +191,7 @@ namespace OPL_GUI.Renderables
             GL.EnableVertexAttribArray(1);
             GL.BindAttribLocation(shaderProgramHandle, 1, "vertex_normal");
             GL.VertexAttribPointer(1, 3, VertexAttribPointerType.Float, false, Vector3.SizeInBytes, 0);
-            
-            // Disable the buffers
-            GL.EnableVertexAttribArray(0);
-            GL.BindVertexArray(0);
+           
         }
 
         private void LoadIndexer()

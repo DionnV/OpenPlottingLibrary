@@ -53,18 +53,22 @@ namespace OPL_GUI
             }
 
             GL.ClearColor(1, 1f, 1f, 1);
+            GL.Flush();
             SwapBuffers();
         }
 
         private void draw(IRenderable renderable)
         {
+            // Bind the VAO buffer
+            GL.BindVertexArray(renderable.GetBufferHandle());
+
             // Get the shader program to use 
             GL.UseProgram(renderable.GetShaderProgramHandle());
 
             renderable.Draw(_camera);
 
-            // Disable shader program
-            GL.UseProgram(0);
+            // Disable shader program 
+            GL.UseProgram(0);            
         }
 
         #region Overrides

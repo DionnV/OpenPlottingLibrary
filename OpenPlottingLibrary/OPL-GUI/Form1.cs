@@ -55,6 +55,7 @@ namespace OPL_GUI
             List<Point3D> zAxis = AxisGenerator.Generate(AxisGenerator.axis.z, -5, 5);
             
             PointRenderer renderer = new PointRenderer(points);
+            IRenderable cube = new Cube();
             PointRenderer xRenderer = new PointRenderer(xAxis);
             PointRenderer yRenderer = new PointRenderer(yAxis);
             PointRenderer zRenderer = new PointRenderer(zAxis);
@@ -62,6 +63,7 @@ namespace OPL_GUI
 
             ((OPLViewControl)this._oplvIewControl1).Renderlist.Clear();
             ((OPLViewControl)this._oplvIewControl1).Renderlist.Add(renderer);
+            ((OPLViewControl)this._oplvIewControl1).Renderlist.Add(cube);
             ((OPLViewControl)this._oplvIewControl1).Renderlist.Add(xRenderer);
             ((OPLViewControl)this._oplvIewControl1).Renderlist.Add(yRenderer);
             ((OPLViewControl)this._oplvIewControl1).Renderlist.Add(zRenderer);
