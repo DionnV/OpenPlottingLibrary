@@ -93,21 +93,21 @@ namespace OPL_GUI
             Orientation *= Extension.CreateRotationZ(angle);         
         }
 
-        public void SetX(float x)
+        public void MoveX(float x)
         {
-            Vector3 newPos = new Vector3(x, Position.Y, Position.Z);
+            Vector3 newPos = new Vector3(Position.X + x, Position.Y, Position.Z);
             Position = newPos;
         }
 
-        public void SetY(float y)
+        public void MoveY(float y)
         {
-            Vector3 newPos = new Vector3(Position.X, y, Position.Z);
+            Vector3 newPos = new Vector3(Position.X, Position.Y + y, Position.Z);
             Position = newPos;
         }
 
-        public void SetZ(float z)
+        public void MoveZ(float z)
         {
-            Vector3 newPos = new Vector3(Position.X, Position.Y, z);
+            Vector3 newPos = new Vector3(Position.X, Position.Y, Position.Z + z);
             Position = newPos;
         }
         #endregion

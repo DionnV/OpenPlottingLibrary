@@ -31,7 +31,7 @@ namespace OpenPlottingLibrary
             bool yDown = false;
             bool start = true;
 
-            while (x <= xMax || y <= yMax)
+            while (x <= xMax && y <= yMax)
             {
                 //Add first point
                 if (start)

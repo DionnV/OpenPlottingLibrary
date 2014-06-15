@@ -52,41 +52,5 @@ namespace OPL_GUI
             ((OPLViewControl)this._oplvIewControl1).Renderlist.Add(renderer);
             this.Refresh();
         }
-
-        private void XBar_Scroll(object sender, EventArgs e)
-        {
-            List<Point3D> points = PlaneGenerator.Generate(expressionBox.Text, -5, 5, -5, 5, densityBar.Value);
-
-            PointRenderer renderer = new PointRenderer(points);
-            _oplvIewControl1._camera.SetX((float)XBar.Value);
-
-            ((OPLViewControl)this._oplvIewControl1).Renderlist.Clear();
-            ((OPLViewControl)this._oplvIewControl1).Renderlist.Add(renderer);
-            this.Refresh();
-        }
-
-        private void YBar_Scroll(object sender, EventArgs e)
-        {
-            List<Point3D> points = PlaneGenerator.Generate(expressionBox.Text, -5, 5, -5, 5, densityBar.Value);
-
-            PointRenderer renderer = new PointRenderer(points);
-            _oplvIewControl1._camera.SetY((float)YBar.Value);
-
-            ((OPLViewControl)this._oplvIewControl1).Renderlist.Clear();
-            ((OPLViewControl)this._oplvIewControl1).Renderlist.Add(renderer);
-            this.Refresh();
-        }
-
-        private void ZBar_Scroll(object sender, EventArgs e)
-        {
-            List<Point3D> points = PlaneGenerator.Generate(expressionBox.Text, -5, 5, -5, 5, densityBar.Value);
-
-            PointRenderer renderer = new PointRenderer(points);
-            _oplvIewControl1._camera.SetZ((float)ZBar.Value);
-
-            ((OPLViewControl)this._oplvIewControl1).Renderlist.Clear();
-            ((OPLViewControl)this._oplvIewControl1).Renderlist.Add(renderer);
-            this.Refresh();
-        }
     }
 }

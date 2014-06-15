@@ -42,17 +42,8 @@
             this.label5 = new System.Windows.Forms.Label();
             this.densityBar = new System.Windows.Forms.TrackBar();
             this.label6 = new System.Windows.Forms.Label();
-            this.XBar = new System.Windows.Forms.TrackBar();
-            this.YBar = new System.Windows.Forms.TrackBar();
-            this.ZBar = new System.Windows.Forms.TrackBar();
-            this.XLabel = new System.Windows.Forms.Label();
-            this.YLabel = new System.Windows.Forms.Label();
-            this.ZLabel = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.densityBar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.XBar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.YBar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ZBar)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -189,77 +180,11 @@
             this.label6.TabIndex = 6;
             this.label6.Text = "Density:";
             // 
-            // XBar
-            // 
-            this.XBar.Location = new System.Drawing.Point(1094, 119);
-            this.XBar.Maximum = 25;
-            this.XBar.Minimum = -25;
-            this.XBar.Name = "XBar";
-            this.XBar.Size = new System.Drawing.Size(104, 45);
-            this.XBar.TabIndex = 7;
-            this.XBar.TickFrequency = 5;
-            this.XBar.Scroll += new System.EventHandler(this.XBar_Scroll);
-            // 
-            // YBar
-            // 
-            this.YBar.Location = new System.Drawing.Point(1094, 170);
-            this.YBar.Maximum = 25;
-            this.YBar.Minimum = -25;
-            this.YBar.Name = "YBar";
-            this.YBar.Size = new System.Drawing.Size(104, 45);
-            this.YBar.TabIndex = 8;
-            this.YBar.TickFrequency = 5;
-            this.YBar.Scroll += new System.EventHandler(this.YBar_Scroll);
-            // 
-            // ZBar
-            // 
-            this.ZBar.Location = new System.Drawing.Point(1094, 221);
-            this.ZBar.Maximum = 25;
-            this.ZBar.Minimum = -25;
-            this.ZBar.Name = "ZBar";
-            this.ZBar.Size = new System.Drawing.Size(104, 45);
-            this.ZBar.TabIndex = 9;
-            this.ZBar.TickFrequency = 5;
-            this.ZBar.Scroll += new System.EventHandler(this.ZBar_Scroll);
-            // 
-            // XLabel
-            // 
-            this.XLabel.AutoSize = true;
-            this.XLabel.Location = new System.Drawing.Point(1061, 119);
-            this.XLabel.Name = "XLabel";
-            this.XLabel.Size = new System.Drawing.Size(14, 13);
-            this.XLabel.TabIndex = 10;
-            this.XLabel.Text = "X";
-            // 
-            // YLabel
-            // 
-            this.YLabel.AutoSize = true;
-            this.YLabel.Location = new System.Drawing.Point(1061, 170);
-            this.YLabel.Name = "YLabel";
-            this.YLabel.Size = new System.Drawing.Size(14, 13);
-            this.YLabel.TabIndex = 11;
-            this.YLabel.Text = "Y";
-            // 
-            // ZLabel
-            // 
-            this.ZLabel.AutoSize = true;
-            this.ZLabel.Location = new System.Drawing.Point(1061, 221);
-            this.ZLabel.Name = "ZLabel";
-            this.ZLabel.Size = new System.Drawing.Size(14, 13);
-            this.ZLabel.TabIndex = 12;
-            this.ZLabel.Text = "Z";
-            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1293, 617);
-            this.Controls.Add(this.ZLabel);
-            this.Controls.Add(this.YLabel);
-            this.Controls.Add(this.XLabel);
-            this.Controls.Add(this.ZBar);
-            this.Controls.Add(this.YBar);
-            this.Controls.Add(this.XBar);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.densityBar);
             this.Controls.Add(this.label5);
@@ -276,9 +201,6 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.densityBar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.XBar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.YBar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ZBar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -300,12 +222,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TrackBar densityBar;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TrackBar XBar;
-        private System.Windows.Forms.TrackBar YBar;
-        private System.Windows.Forms.TrackBar ZBar;
-        private System.Windows.Forms.Label XLabel;
-        private System.Windows.Forms.Label YLabel;
-        private System.Windows.Forms.Label ZLabel;
     }
 }
 
