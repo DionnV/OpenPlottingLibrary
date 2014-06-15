@@ -80,5 +80,19 @@ namespace OPL_GUI
         {
             get { return GraphicsMode.Samples; }
         }
+
+        private void InitializeComponent()
+        {
+            this.SuspendLayout();
+            // 
+            // OPLViewControl
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.Name = "OPLViewControl";            
+            this.ResumeLayout(false);
+
+        }
+
+
     }
 }

@@ -199,7 +199,7 @@
             this.Text = "Open Plotting Library GUI";
             this.Load += new System.EventHandler(this.MainWindow_Load);
             this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.groupBox1.PerformLayout();            
             ((System.ComponentModel.ISupportInitialize)(this.densityBar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
