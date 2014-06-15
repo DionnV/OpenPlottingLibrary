@@ -44,12 +44,27 @@ namespace OPL_GUI
             GL.Viewport(0, 0, this.Width, this.Height);
 
             MakeCurrent();
+            
+            GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
+            
             if (_renderlist.Count > 0)
             {
-                _renderlist.ForEach(x => x.Draw(_camera));   
+                _renderlist.ForEach(draw);   
             }
 
+            GL.ClearColor(1, 1f, 1f, 1);
             SwapBuffers();
+        }
+
+        private void draw(IRenderable renderable)
+        {
+            // Get the shader program to use 
+            GL.UseProgram(renderable.GetShaderProgramHandle());
+
+            renderable.Draw(_camera);
+
+            // Disable shader program
+            GL.UseProgram(0);
         }
 
         #region Overrides

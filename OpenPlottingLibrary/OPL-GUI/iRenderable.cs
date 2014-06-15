@@ -5,5 +5,11 @@ namespace OPL_GUI
     public interface IRenderable
     {
         void Draw(Camera camera);
+
+        /// <summary>
+        /// Returns the shader programs that should be used to render this object.
+        /// </summary>
+        /// <returns></returns>
+        int GetShaderProgramHandle();
     }
 }

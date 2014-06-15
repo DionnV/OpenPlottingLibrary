@@ -92,7 +92,6 @@ namespace OPL_GUI.Renderables
 
             // Other state
             GL.Enable(EnableCap.DepthTest);
-            GL.ClearColor(1, 1f, 1f, 1);
         }
 
         public void Draw(Camera camera)
@@ -106,10 +105,19 @@ namespace OPL_GUI.Renderables
             
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
 
+            GL.BindVertexArray(positionVboHandle);
+
             GL.DrawElements(BeginMode.TriangleStrip, indicesVboData.Length,
                 DrawElementsType.UnsignedInt, IntPtr.Zero);
 
+            GL.BindVertexArray(0);
+
             GL.Flush();
+        }
+
+        public int GetShaderProgramHandle()
+        {
+            return this.shaderProgramHandle;
         }
 
         private void CreateShaders()
@@ -168,6 +176,9 @@ namespace OPL_GUI.Renderables
             GL.EnableVertexAttribArray(0);
             GL.BindAttribLocation(shaderProgramHandle, 0, "vertex_position");
             GL.VertexAttribPointer(0, 3, VertexAttribPointerType.Float, false, Vector3.SizeInBytes, 0);
+
+            GL.EnableVertexAttribArray(0);
+            GL.BindVertexArray(0);
         }
 
         private void LoadVertexNormals()
@@ -181,6 +192,10 @@ namespace OPL_GUI.Renderables
             GL.EnableVertexAttribArray(1);
             GL.BindAttribLocation(shaderProgramHandle, 1, "vertex_normal");
             GL.VertexAttribPointer(1, 3, VertexAttribPointerType.Float, false, Vector3.SizeInBytes, 0);
+            
+            // Disable the buffers
+            GL.EnableVertexAttribArray(0);
+            GL.BindVertexArray(0);
         }
 
         private void LoadIndexer()

@@ -101,13 +101,12 @@ namespace OPL_GUI.Renderables
 
             SetModelviewMatrix(Matrix4.RotateX(0.5f) * Matrix4.CreateTranslation(0, 0, -4));
 
-            LoadVertexPositions();
-            LoadVertexNormals();
-            LoadIndexer();
+            //LoadVertexPositions();
+            //LoadVertexNormals();
+            //LoadIndexer();
 
             // Other state
             GL.Enable(EnableCap.DepthTest);
-            GL.ClearColor(0, 0.1f, 0.4f, 1);
         }
 
         public void Draw(Camera camera)
@@ -115,13 +114,17 @@ namespace OPL_GUI.Renderables
             Matrix4 mat4 = new Matrix4();
             camera.GetProjectionMatrix(out mat4);
             SetProjectionMatrix(mat4);
-            
-            GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
+           
 
             GL.DrawElements(BeginMode.TriangleStrip, indicesVboData.Length,
                 DrawElementsType.UnsignedInt, IntPtr.Zero);
 
             GL.Flush();
+        }
+
+        public int GetShaderProgramHandle()
+        {
+            return this.shaderProgramHandle;
         }
 
         private void CreateShaders()
