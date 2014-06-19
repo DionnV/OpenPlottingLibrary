@@ -69,15 +69,28 @@ namespace OPL_GUI.Renderables
             indicesVboHandle,
             vaoHandle;
 
+        private int _size;
+
         Matrix4 projectionMatrix, modelviewMatrix;
 
         private Vector3[] positionVboData;
 
         private uint[] indicesVboData;
 
-        public PointRenderer(List<Point3D> points)
+        public PointRenderer(List<Point3D> points) : this(points, 10)
+        {
+            
+        }
+
+        public PointRenderer(List<Point3D> points, int size)
         {
             positionVboData = points.Select(x => new Vector3(x.x, x.y, x.z)).ToArray();
+            this._size = size + 1;
+
+            if ((_size * _size) != positionVboData.Count())
+            {
+                throw new Exception("Size parameter is not correct");  
+            }
 
             CreateShaders();
             CreateProgram();
@@ -194,16 +207,34 @@ namespace OPL_GUI.Renderables
            
         }
 
+        /// <summary>
+        /// Create the index used for drawing. Makes use of degenerate triangles to create a plane from a
+        /// set of points.
+        /// </summary>
         private void LoadIndexer()
         {
             // Generate indexes for use on triangestrip
 
-            indicesVboData = new uint[positionVboData.Length];
-            
-            for (int i = 0; i < positionVboData.Length; i++)
+            //indicesVboData = new uint[positionVboData.Length * 2];
+
+            List<uint> index = new List<uint>(positionVboData.Length * 2);
+
+            int amountOfRows = _size - 1;
+
+            for (uint i = 0; i <= amountOfRows; i++)
             {
-                indicesVboData[i] = (uint)i;
+                for (uint j = 0; j < _size; j++)
+                {
+                    index.Add((uint) (j + (i * _size)));
+                    index.Add((uint) (j + ((i + 1) * _size)));
+                }
+
+                //  Add degenerate triangles.
+                index.Add((uint)((_size - 1) + ((i + 1) * _size)));
+                index.Add((uint)(_size * (i + 1)));
             }
+
+            indicesVboData = index.ToArray();
 
             GL.GenBuffers(1, out indicesVboHandle);
             GL.BindBuffer(BufferTarget.ElementArrayBuffer, indicesVboHandle);

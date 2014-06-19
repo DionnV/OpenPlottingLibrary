@@ -19,12 +19,17 @@ namespace OpenPlottingLibrary
         {
             List<Point3D> generatedPlane = new List<Point3D>();
           
-            float x = xMin;
-            float y = yMin;
-            float dir = 1;
-
             var f = Function.ToFunc<float, float, float>(expr, "x", "y");
 
+            for (float x = xMin; x <= xMax; x += (1/density))
+            {
+                for (float y = yMin; y <= yMax; y += (1/density))
+                {
+                    generatedPlane.Add(new Point3D(x,y, f(x,y)));
+                }
+            }
+
+            /*            
             float rowCount = 0;
 
             bool yUp = false;
@@ -81,7 +86,23 @@ namespace OpenPlottingLibrary
                     dir = -dir;
                 }
             }
+             * */
             return generatedPlane;
+        }
+
+        public static List<Point3D> GenerateFlatPlane(int xMin, int xMax, int yMin, int yMax, float density)
+        {
+            List<Point3D> points = new List<Point3D>();
+
+            for (double i = xMin; i <= xMax; i += 1/density)
+            {
+                for (double j = yMin; j <= yMax; j += 1/density)
+                {
+                    points.Add(new Point3D((float)i,(float)j,0));  
+                }
+            }
+
+            return points;
         }
     }
 }
