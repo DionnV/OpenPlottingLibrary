@@ -13,7 +13,7 @@ namespace OPL_GUI
     public partial class MainWindow : Form
     {
         OPLViewControl _oplvIewControl1;
-        MouseInfo _mInfo;
+        Point mousePos;
 
         public MainWindow()
         {
@@ -22,7 +22,6 @@ namespace OPL_GUI
 
         private void MainWindow_Load(object sender, EventArgs e)
         {
-            _mInfo = new MouseInfo();
             // The OPLViewcontrol is loaded manually, otherwise the designer keeps crashing
             _oplvIewControl1 = new OPLViewControl
             {
@@ -36,7 +35,7 @@ namespace OPL_GUI
             Controls.Add(_oplvIewControl1);
             this._oplvIewControl1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.OPLViewControl_MouseDown);
             this._oplvIewControl1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.OPLViewControl_MouseMove);
-            this._oplvIewControl1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.OPLViewControl_MouseUp);
+            this._oplvIewControl1.MouseWheel += new System.Windows.Forms.MouseEventHandler(this.OPLViewControl_MouseWheel);
 
             GLControl glControl = _oplvIewControl1;
             lblGLVersion.Text = GL.GetInteger(GetPName.MajorVersion) + "." + GL.GetInteger(GetPName.MinorVersion);
@@ -45,7 +44,7 @@ namespace OPL_GUI
 
             lblVendor.Text = GL.GetString(StringName.Vendor);
             lblRenderer.Text = GL.GetString(StringName.Renderer); 
-        }
+        }       
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -74,50 +73,40 @@ namespace OPL_GUI
         {
             if(e.Button == System.Windows.Forms.MouseButtons.Left)
             {
-                _mInfo.xPosWhenPressed = e.X;
-                _mInfo.yPosWhenPressed = e.Y;
-                _mInfo.isLeftDown = true;
+                mousePos = e.Location;
             }
 
             if(e.Button == System.Windows.Forms.MouseButtons.Right)
             {
                 //Rotate graph here
-                _mInfo.isRightDown = true;
             }
         }
          
         private void OPLViewControl_MouseMove(object sender, MouseEventArgs e)
         {
-            if (_mInfo.isLeftDown)
+            if (e.Button == System.Windows.Forms.MouseButtons.Left)
             {
                 //Moving camera here
-                _oplvIewControl1._camera.MoveY((_mInfo.xPosWhenPressed - e.X)/2);
-                _oplvIewControl1._camera.MoveX(-(_mInfo.yPosWhenPressed - e.Y)/2);
-                _mInfo.xPosWhenPressed = e.X;
-                _mInfo.yPosWhenPressed = e.Y;
+                _oplvIewControl1._camera.MoveY((mousePos.X - e.X)/2);
+                _oplvIewControl1._camera.MoveX(-(mousePos.Y - e.Y)/2);
+                mousePos = e.Location;
                 this.Refresh();
-            }
-
-            if (_mInfo.isRightDown)
-            {
-                //Rotate graph here
-                _oplvIewControl1._camera.MoveZ(-(_mInfo.yPosWhenPressed - e.Y) / 2);
-                _mInfo.yPosWhenPressed = e.Y;
-                this.Refresh();
-            }
-        }
-
-        private void OPLViewControl_MouseUp(object sender, MouseEventArgs e)
-        {
-            if(e.Button == System.Windows.Forms.MouseButtons.Left)
-            { 
-                _mInfo.isLeftDown = false;
             }
 
             if (e.Button == System.Windows.Forms.MouseButtons.Right)
             {
-                _mInfo.isRightDown = false;
+                //Rotate graph here
+                _oplvIewControl1._camera.Rotate((mousePos.X - e.X), (mousePos.Y - e.Y));
+                mousePos = e.Location;
+                this.Refresh();
             }
         }
+
+        private void OPLViewControl_MouseWheel(object sender, MouseEventArgs e)
+        {
+            _oplvIewControl1._camera.MoveZ(e.Delta/60);
+            this.Refresh();
+        }
+
     }
 }

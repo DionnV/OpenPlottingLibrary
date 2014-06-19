@@ -23,8 +23,11 @@ namespace OPL_GUI
 
         public Camera(Vector3 position, Quaternion orientation)
         {
-            TargetPosition = Position = position;
-            TargetOrientation = Orientation = orientation;
+            Position = position;
+            Orientation = orientation;
+
+            orXAngle = 0;
+            orYAngle = 0;
 
             AspectRatio = 1.333f;
             FieldOfView = 60;
@@ -41,9 +44,8 @@ namespace OPL_GUI
 
         public Vector3 Position { get; set; }
         public Quaternion Orientation { get; set; }
-
-        public Vector3 TargetPosition { get; set; }
-        public Quaternion TargetOrientation { get; set; }
+        public float orXAngle { get; set; }
+        public float orYAngle { get; set; }
 
         public Vector3 Forward { get { return Extension.Apply(Orientation, Vector3.UnitZ); } }
         public Vector3 Right { get { return Extension.Apply(Orientation, Vector3.UnitX); } }
@@ -79,20 +81,6 @@ namespace OPL_GUI
             Matrix4.Mult(ref translation_matrix, ref rotation_matrix, out matrix);
         }
 
-        public void RotateX(float angle)
-        {
-            Orientation *= Extension.CreateRotationX(angle);         
-        }
-
-        public void RotateY(float angle)
-        {
-            Orientation *= Extension.CreateRotationY(angle);
-        }
-        public void RotateZ(float angle)
-        {
-            Orientation *= Extension.CreateRotationZ(angle);         
-        }
-
         public void MoveX(float x)
         {
             Vector3 newPos = new Vector3(Position.X + x, Position.Y, Position.Z);
@@ -109,6 +97,14 @@ namespace OPL_GUI
         {
             Vector3 newPos = new Vector3(Position.X, Position.Y, Position.Z + z);
             Position = newPos;
+        }
+
+        public void Rotate(float xAngle, float yAngle)
+        {
+            Orientation = new Quaternion(Orientation.X - xAngle * 0.005f, Orientation.Y + yAngle * 0.005f, Orientation.Z, Orientation.W);
+            //orXAngle += xAngle * 0.001f;
+            //orYAngle += yAngle * 0.001f;
+            //Orientation = Quaternion.FromAxisAngle(Right, orYAngle) * Quaternion.FromAxisAngle(Up, orXAngle);
         }
         #endregion
 
