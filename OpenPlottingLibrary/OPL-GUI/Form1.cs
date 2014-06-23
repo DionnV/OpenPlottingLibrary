@@ -55,16 +55,16 @@ namespace OPL_GUI
             List<Point3D> zAxis = AxisGenerator.Generate(AxisGenerator.axis.z, -5, 5);
             
             PointRenderer renderer = new PointRenderer(points, (5 - (-5))*densityBar.Value);
-            //PointRenderer xRenderer = new PointRenderer(xAxis);
-            //PointRenderer yRenderer = new PointRenderer(yAxis);
-            //PointRenderer zRenderer = new PointRenderer(zAxis);
+            AxisRenderer xRenderer = new AxisRenderer(xAxis);
+            AxisRenderer yRenderer = new AxisRenderer(yAxis);
+            AxisRenderer zRenderer = new AxisRenderer(zAxis);
 
 
             ((OPLViewControl)this._oplvIewControl1).Renderlist.Clear();
             ((OPLViewControl)this._oplvIewControl1).Renderlist.Add(renderer);
-            //((OPLViewControl)this._oplvIewControl1).Renderlist.Add(xRenderer);
-            //((OPLViewControl)this._oplvIewControl1).Renderlist.Add(yRenderer);
-            //((OPLViewControl)this._oplvIewControl1).Renderlist.Add(zRenderer);
+            ((OPLViewControl)this._oplvIewControl1).Renderlist.Add(xRenderer);
+            ((OPLViewControl)this._oplvIewControl1).Renderlist.Add(yRenderer);
+            ((OPLViewControl)this._oplvIewControl1).Renderlist.Add(zRenderer);
             this.Refresh();
         }
 
