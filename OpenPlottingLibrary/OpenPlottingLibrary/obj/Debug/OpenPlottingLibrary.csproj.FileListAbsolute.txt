@@ -13,3 +13,8 @@ C:\Users\Maikel\Documents\Visual Studio 2013\Projects\OpenPlottingLibrary\OpenPl
 C:\Users\Maikel\Documents\Visual Studio 2013\Projects\OpenPlottingLibrary\OpenPlottingLibrary\OpenPlottingLibrary\obj\Debug\OpenPlottingLibrary.csprojResolveAssemblyReference.cache
 C:\Users\Maikel\Documents\Visual Studio 2013\Projects\OpenPlottingLibrary\OpenPlottingLibrary\OpenPlottingLibrary\obj\Debug\OpenPlottingLibrary.dll
 C:\Users\Maikel\Documents\Visual Studio 2013\Projects\OpenPlottingLibrary\OpenPlottingLibrary\OpenPlottingLibrary\obj\Debug\OpenPlottingLibrary.pdb
+C:\Users\Kenney\Documents\OpenPlottingLibrary\OpenPlottingLibrary\OpenPlottingLibrary\bin\Debug\OpenPlottingLibrary.dll
+C:\Users\Kenney\Documents\OpenPlottingLibrary\OpenPlottingLibrary\OpenPlottingLibrary\bin\Debug\OpenPlottingLibrary.pdb
+C:\Users\Kenney\Documents\OpenPlottingLibrary\OpenPlottingLibrary\OpenPlottingLibrary\obj\Debug\OpenPlottingLibrary.csprojResolveAssemblyReference.cache
+C:\Users\Kenney\Documents\OpenPlottingLibrary\OpenPlottingLibrary\OpenPlottingLibrary\obj\Debug\OpenPlottingLibrary.dll
+C:\Users\Kenney\Documents\OpenPlottingLibrary\OpenPlottingLibrary\OpenPlottingLibrary\obj\Debug\OpenPlottingLibrary.pdb
