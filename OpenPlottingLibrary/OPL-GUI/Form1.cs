@@ -15,6 +15,9 @@ namespace OPL_GUI
         OPLViewControl _oplvIewControl1;
         Point mousePos;
 
+        private int _axisSize = 10;
+        private int _planeSize = 5;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -41,23 +44,22 @@ namespace OPL_GUI
             lblGLVersion.Text = GL.GetInteger(GetPName.MajorVersion) + "." + GL.GetInteger(GetPName.MinorVersion);
 
             lblAA.Text = glControl.Context.GraphicsMode.Samples.ToString(CultureInfo.InvariantCulture);
-
             lblVendor.Text = GL.GetString(StringName.Vendor);
             lblRenderer.Text = GL.GetString(StringName.Renderer); 
         }       
 
         private void button1_Click(object sender, EventArgs e)
         {
-            List<Point3D> points = PlaneGenerator.Generate(expressionBox.Text,-5, 5, -5, 5, densityBar.Value);
+            List<Point3D> points = PlaneGenerator.Generate(expressionBox.Text, -_planeSize, _planeSize, -_planeSize, _planeSize, densityBar.Value);
             //List<Point3D> points = PlaneGenerator.GenerateFlatPlane(-10, 10, -10, 10, densityBar.Value);
-            List<Point3D> xAxis = AxisGenerator.Generate(AxisGenerator.axis.x, -5, 5);
-            List<Point3D> yAxis = AxisGenerator.Generate(AxisGenerator.axis.y, -5, 5);
-            List<Point3D> zAxis = AxisGenerator.Generate(AxisGenerator.axis.z, -5, 5);
+            List<Point3D> xAxis = AxisGenerator.Generate(AxisGenerator.axis.x, -_axisSize, _axisSize);
+            List<Point3D> yAxis = AxisGenerator.Generate(AxisGenerator.axis.y, -_axisSize, _axisSize);
+            List<Point3D> zAxis = AxisGenerator.Generate(AxisGenerator.axis.z, -_axisSize, _axisSize);
             
-            PointRenderer renderer = new PointRenderer(points, (5 - (-5))*densityBar.Value);
-            AxisRenderer xRenderer = new AxisRenderer(xAxis);
-            AxisRenderer yRenderer = new AxisRenderer(yAxis);
-            AxisRenderer zRenderer = new AxisRenderer(zAxis);
+            PointRenderer renderer = new PointRenderer(points, (_planeSize*2)*densityBar.Value);
+            AxisRenderer xRenderer = new AxisRenderer(xAxis, _axisSize*2);
+            AxisRenderer yRenderer = new AxisRenderer(yAxis, _axisSize*2);
+            AxisRenderer zRenderer = new AxisRenderer(zAxis, _axisSize*2);
 
 
             ((OPLViewControl)this._oplvIewControl1).Renderlist.Clear();

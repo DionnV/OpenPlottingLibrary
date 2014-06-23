@@ -23,21 +23,21 @@ namespace OpenPlottingLibrary
             switch(ax)
             {
                 case axis.x:
-                    for (float i = Min; i <= Max; i = (float)(i + .1))
+                    for (double i = Min; i <= Max; i = (double)(i + .1))
                     {
-                        generatedAxis.Add(new Point3D(i, 0, 0));
+                        generatedAxis.Add(new Point3D((float)i, 0, 0));
                     }
                     break;
                 case axis.y:
-                    for (float i = Min; i <= Max; i = (float)(i + .1))
+                    for (double i = Min; i <= Max; i = (double)(i + .1))
                     {
-                        generatedAxis.Add(new Point3D(0, i, 0));
+                        generatedAxis.Add(new Point3D(0, (float)i, 0));
                     }
                     break;
                 case axis.z:
-                    for (float i = Min; i <= Max; i = (float)(i + .1))
+                    for (double i = Min; i <= Max; i = (double)(i + .1))
                     {
-                        generatedAxis.Add(new Point3D(0, 0, i));
+                        generatedAxis.Add(new Point3D(0, 0, (float)i));
                     }
                     break;
             }

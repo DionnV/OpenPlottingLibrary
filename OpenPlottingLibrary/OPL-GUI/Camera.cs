@@ -101,7 +101,7 @@ namespace OPL_GUI
 
         public void Rotate(float xAngle, float yAngle)
         {
-            Orientation = new Quaternion(Orientation.X - xAngle * 0.005f, Orientation.Y + yAngle * 0.005f, Orientation.Z, Orientation.W);
+            Orientation = new Quaternion(Orientation.X, Orientation.Y - xAngle * 0.005f, Orientation.Z - yAngle * 0.005f, Orientation.W);
         }
         #endregion
 
