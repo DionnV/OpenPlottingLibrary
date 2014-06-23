@@ -19,7 +19,7 @@ namespace OpenPlottingLibrary
         {
             List<Point3D> generatedPlane = new List<Point3D>();
           
-            var f = Function.ToFunc<float, float, float>(expr, "x", "y");
+            var f = Function.ToFunc<double, float, float>(expr, "x", "y");
 
             for (float x = xMin; x <= xMax; x += (1/density))
             {
@@ -103,6 +103,19 @@ namespace OpenPlottingLibrary
             }
 
             return points;
+        }
+
+        public static List<Point3D> GenerateSOMBRERO(int xMin, int xMax, int yMin, int yMax, float density)
+        {
+            List<Point3D> generatedPlane = new List<Point3D>();
+            for (float x = xMin; x <= xMax; x += (1 / density))
+            {
+                for (float y = yMin; y <= yMax; y += (1 / density))
+                {
+                    generatedPlane.Add(new Point3D(x, y, Math.Sin((Math.Sqrt(x*x + y*y)) / (Math.Sqrt(x*x + y*y)))));
+                }
+            }
+            return generatedPlane;
         }
     }
 }

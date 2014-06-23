@@ -109,5 +109,27 @@ namespace OPL_GUI
             this.Refresh();
         }
 
+        private void sombreroButton_Click(object sender, EventArgs e)
+        {
+            List<Point3D> points = PlaneGenerator.GenerateSOMBRERO( -_planeSize, _planeSize, -_planeSize, _planeSize, densityBar.Value);
+            //List<Point3D> points = PlaneGenerator.GenerateFlatPlane(-10, 10, -10, 10, densityBar.Value);
+            List<Point3D> xAxis = AxisGenerator.Generate(AxisGenerator.axis.x, -_axisSize, _axisSize);
+            List<Point3D> yAxis = AxisGenerator.Generate(AxisGenerator.axis.y, -_axisSize, _axisSize);
+            List<Point3D> zAxis = AxisGenerator.Generate(AxisGenerator.axis.z, -_axisSize, _axisSize);
+
+            PointRenderer renderer = new PointRenderer(points, (_planeSize * 2) * densityBar.Value);
+            AxisRenderer xRenderer = new AxisRenderer(xAxis, _axisSize * 2);
+            AxisRenderer yRenderer = new AxisRenderer(yAxis, _axisSize * 2);
+            AxisRenderer zRenderer = new AxisRenderer(zAxis, _axisSize * 2);
+
+
+            ((OPLViewControl)this._oplvIewControl1).Renderlist.Clear();
+            ((OPLViewControl)this._oplvIewControl1).Renderlist.Add(renderer);
+            ((OPLViewControl)this._oplvIewControl1).Renderlist.Add(xRenderer);
+            ((OPLViewControl)this._oplvIewControl1).Renderlist.Add(yRenderer);
+            ((OPLViewControl)this._oplvIewControl1).Renderlist.Add(zRenderer);
+            this.Refresh();
+        }
+
     }
 }

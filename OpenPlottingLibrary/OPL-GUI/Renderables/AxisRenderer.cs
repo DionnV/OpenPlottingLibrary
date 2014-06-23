@@ -85,7 +85,7 @@ namespace OPL_GUI.Renderables
 
         public AxisRenderer(List<Point3D> points, int size)
         {
-            positionVboData = points.Select(x => new Vector3(x.x, x.y, x.z)).ToArray();
+            positionVboData = points.Select(x => new Vector3(x.x, x.y, (float)x.z)).ToArray();
             this._size = size*10 + 1;
 
             if ((_size) != positionVboData.Count())

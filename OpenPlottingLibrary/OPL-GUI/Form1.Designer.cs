@@ -42,6 +42,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.densityBar = new System.Windows.Forms.TrackBar();
             this.label6 = new System.Windows.Forms.Label();
+            this.sombreroButton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.densityBar)).BeginInit();
             this.SuspendLayout();
@@ -180,11 +181,22 @@
             this.label6.TabIndex = 6;
             this.label6.Text = "Density:";
             // 
+            // sombreroButton
+            // 
+            this.sombreroButton.Location = new System.Drawing.Point(1056, 138);
+            this.sombreroButton.Name = "sombreroButton";
+            this.sombreroButton.Size = new System.Drawing.Size(171, 44);
+            this.sombreroButton.TabIndex = 7;
+            this.sombreroButton.Text = "SOMBRERO!";
+            this.sombreroButton.UseVisualStyleBackColor = true;
+            this.sombreroButton.Click += new System.EventHandler(this.sombreroButton_Click);
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1293, 617);
+            this.Controls.Add(this.sombreroButton);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.densityBar);
             this.Controls.Add(this.label5);
@@ -199,7 +211,7 @@
             this.Text = "Open Plotting Library GUI";
             this.Load += new System.EventHandler(this.MainWindow_Load);
             this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();            
+            this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.densityBar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -222,6 +234,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TrackBar densityBar;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button sombreroButton;
     }
 }
 
