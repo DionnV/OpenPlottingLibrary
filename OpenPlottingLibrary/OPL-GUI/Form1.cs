@@ -86,8 +86,8 @@ namespace OPL_GUI
             if (e.Button == System.Windows.Forms.MouseButtons.Left)
             {
                 //Moving camera here
-                _oplvIewControl1._camera.MoveY((mousePos.X - e.X)/2);
-                _oplvIewControl1._camera.MoveX(-(mousePos.Y - e.Y)/2);
+                _oplvIewControl1._camera.MoveX((mousePos.X - e.X)/2);
+                _oplvIewControl1._camera.MoveY((mousePos.Y - e.Y)/2);
                 mousePos = e.Location;
                 this.Refresh();
             }

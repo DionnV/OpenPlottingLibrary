@@ -26,7 +26,7 @@ namespace OPL_GUI
         {
 
             _renderlist = new List<IRenderable>();
-            _camera = new Camera(new Vector3(1,1,-10), new Quaternion(1,1,1,0));
+            _camera = new Camera(new Vector3(1,1,-20), new Quaternion(0,1,0,0));
 
             if(LicenseManager.UsageMode == LicenseUsageMode.Designtime)
             {
