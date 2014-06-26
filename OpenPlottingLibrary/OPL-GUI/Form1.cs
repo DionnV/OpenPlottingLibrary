@@ -50,23 +50,31 @@ namespace OPL_GUI
 
         private void button1_Click(object sender, EventArgs e)
         {
-            List<Point3D> points = PlaneGenerator.Generate(expressionBox.Text, -_planeSize, _planeSize, -_planeSize, _planeSize, densityBar.Value);
-            //List<Point3D> points = PlaneGenerator.GenerateFlatPlane(-10, 10, -10, 10, densityBar.Value);
+            //List<Point3D> points = PlaneGenerator.Generate(expressionBox.Text, -_planeSize, _planeSize, -_planeSize, _planeSize, densityBar.Value);
+            List<Point3D> points = PlaneGenerator.GenerateFlatPlane(-_planeSize, _planeSize, -_planeSize, _planeSize, densityBar.Value);
             List<Point3D> xAxis = AxisGenerator.Generate(AxisGenerator.axis.x, -_axisSize, _axisSize);
             List<Point3D> yAxis = AxisGenerator.Generate(AxisGenerator.axis.y, -_axisSize, _axisSize);
             List<Point3D> zAxis = AxisGenerator.Generate(AxisGenerator.axis.z, -_axisSize, _axisSize);
+            List<Point3D> xGrid = GridGenerator.Generate(GridGenerator.axis.x, -_axisSize, _axisSize);
+            List<Point3D> yGrid = GridGenerator.Generate(GridGenerator.axis.y, -_axisSize, _axisSize);
+            List<Point3D> zGrid = GridGenerator.Generate(GridGenerator.axis.z, -_axisSize, _axisSize);
             
             PointRenderer renderer = new PointRenderer(points, (_planeSize*2)*densityBar.Value);
-            AxisRenderer xRenderer = new AxisRenderer(xAxis, _axisSize*2);
-            AxisRenderer yRenderer = new AxisRenderer(yAxis, _axisSize*2);
-            AxisRenderer zRenderer = new AxisRenderer(zAxis, _axisSize*2);
-
+            XAxisRenderer xRenderer = new XAxisRenderer(xAxis, 2);
+            YAxisRenderer yRenderer = new YAxisRenderer(yAxis, 2);
+            ZAxisRenderer zRenderer = new ZAxisRenderer(zAxis, 2);
+            XGridRenderer xGRenderer = new XGridRenderer(xGrid, _axisSize * 2);
+            YGridRenderer yGRenderer = new YGridRenderer(yGrid, _axisSize * 2);
+            ZGridRenderer zGRenderer = new ZGridRenderer(zGrid, _axisSize * 2);
 
             ((OPLViewControl)this._oplvIewControl1).Renderlist.Clear();
             ((OPLViewControl)this._oplvIewControl1).Renderlist.Add(renderer);
             ((OPLViewControl)this._oplvIewControl1).Renderlist.Add(xRenderer);
             ((OPLViewControl)this._oplvIewControl1).Renderlist.Add(yRenderer);
             ((OPLViewControl)this._oplvIewControl1).Renderlist.Add(zRenderer);
+            ((OPLViewControl)this._oplvIewControl1).Renderlist.Add(xGRenderer);
+            ((OPLViewControl)this._oplvIewControl1).Renderlist.Add(yGRenderer);
+            ((OPLViewControl)this._oplvIewControl1).Renderlist.Add(zGRenderer);
             this.Refresh();
         }
 
@@ -118,9 +126,9 @@ namespace OPL_GUI
             List<Point3D> zAxis = AxisGenerator.Generate(AxisGenerator.axis.z, -_axisSize, _axisSize);
 
             PointRenderer renderer = new PointRenderer(points, (_planeSize * 2) * densityBar.Value);
-            AxisRenderer xRenderer = new AxisRenderer(xAxis, _axisSize * 2);
-            AxisRenderer yRenderer = new AxisRenderer(yAxis, _axisSize * 2);
-            AxisRenderer zRenderer = new AxisRenderer(zAxis, _axisSize * 2);
+            XAxisRenderer xRenderer = new XAxisRenderer(xAxis, 2);
+            YAxisRenderer yRenderer = new YAxisRenderer(yAxis, 2);
+            ZAxisRenderer zRenderer = new ZAxisRenderer(zAxis, 2);
 
 
             ((OPLViewControl)this._oplvIewControl1).Renderlist.Clear();
