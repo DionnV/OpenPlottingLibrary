@@ -9,7 +9,7 @@ using OpenTK.Graphics.OpenGL;
 
 namespace OPL_GUI.Renderables
 {
-    public class AxisRenderer : IRenderable
+    public class YAxisRenderer : IRenderable
     {
         private readonly List<Point3D> _points;
         string vertexShaderSource = @"
@@ -56,7 +56,7 @@ namespace OPL_GUI.Renderables
             void main(void)
             {
               float diffuse = clamp( dot( lightVecNormalized, normalize( normal ) ), 0.0, 1.0 );
-              out_frag_color = vec4( 0.0, 0.0, 0.0, 0.0 );
+              out_frag_color = vec4( 0.0, 1.0, 0.0, 0.0 );
             }";
 
         int vertexShaderHandle,
@@ -77,16 +77,16 @@ namespace OPL_GUI.Renderables
 
         private uint[] indicesVboData;
 
-        public AxisRenderer(List<Point3D> points)
-            : this(points, 10)
+        public YAxisRenderer(List<Point3D> points)
+            : this(points, 2)
         {
 
         }
 
-        public AxisRenderer(List<Point3D> points, int size)
+        public YAxisRenderer(List<Point3D> points, int size)
         {
             positionVboData = points.Select(x => new Vector3(x.x, x.y, (float)x.z)).ToArray();
-            this._size = size*10 + 1;
+            this._size = size;
 
             if ((_size) != positionVboData.Count())
             {
@@ -121,6 +121,8 @@ namespace OPL_GUI.Renderables
 
             camera.GetModelviewMatrix(out mat4);
             SetModelviewMatrix(mat4);
+
+            GL.LineWidth(3);
 
             GL.DrawElements(BeginMode.Lines, indicesVboData.Length,
                 DrawElementsType.UnsignedInt, IntPtr.Zero);
